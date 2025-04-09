@@ -6,7 +6,6 @@ class CommonApp:
     def __init__(self, port: int):
         self.port = port
         self.app = FastAPI()
-
         self.add_routes()
 
     def home(self):
@@ -20,9 +19,9 @@ class CommonApp:
         self.app.get("/healthCheck", response_class=PlainTextResponse)(self.health_check)
 
     def run_server(self):
-        uvicorn.run(self.app, host="0.0.0.0", port=self.port, reload=True)
+        uvicorn.run(self.app, host="0.0.0.0", port=self.port)
 
-# Example usage:
-# if __name__ == "__main__":
-#     app = CommonApp(port=8000)
-#     app.run_server()
+# Example usage
+if __name__ == "__main__":
+    app = CommonApp(port=8000)
+    app.run_server()
