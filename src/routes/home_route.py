@@ -10,7 +10,7 @@ router = APIRouter()
     response_class=PlainTextResponse,
     tags=["Root"],
     summary="Home endpoint",
-    description="Simple health probe for root access.",
+    description="Home page for gateway or any other temp FE",
     responses={200: {"description": "Service is up"}},
 )
 def home():

@@ -7,12 +7,12 @@ import io
 
 router = APIRouter()
 
-# Route to upload transcript file
+# TODO: clean up and parameterize queries
+
 @router.post("/upload_transcript/")
 async def upload_transcript(file: UploadFile = File(...)):
     file_content = await file.read()
 
-    # Store file in the database
     with sqlite3.connect('transcripts.db') as conn:
         cursor = conn.cursor()
         cursor.execute('''
@@ -61,8 +61,6 @@ async def get_transcript(
             headers={"Content-Disposition": f"attachment; filename={file_name}"}
         )
 
-
-# Route to list all uploaded transcripts
 @router.get("/list_transcripts/")
 async def list_transcripts():
     with sqlite3.connect('transcripts.db') as conn:

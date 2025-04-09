@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 import uvicorn
 from routes import routers
-from models.transcript_db import init_db
+from models.db import init_db
 
 class GMApp:
     def __init__(self, port: int):
@@ -19,7 +19,7 @@ class GMApp:
     def setup_events(self):
         @self.app.on_event("startup")
         async def startup_event():
-            init_db()  # 👈 run DB setup here
+            init_db()
 
     def include_routes(self):
         for route in routers:
