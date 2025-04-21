@@ -1,3 +1,4 @@
+import json
 import sqlite3
 
 DB_NAME = 'gm-meet.db'
