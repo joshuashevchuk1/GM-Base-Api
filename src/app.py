@@ -2,8 +2,9 @@
 
 from fastapi import FastAPI
 import uvicorn
-from routes import routers
-from src.models.transcript import Transcript
+from handlers import handlers
+from src.google_mongo.db import GoogleDb
+
 
 class GMApp:
     def __init__(self, port: int):
@@ -13,17 +14,20 @@ class GMApp:
             description="A modular FastAPI app with home and health check endpoints.",
             version="1.0.0",
         )
-        self.setup_events()
-        self.include_routes()
+        self.db = None
+        self._include_routes()
+        #self._init_mongo()
 
-    def setup_events(self):
-        @self.app.on_event("startup")
-        async def startup_event():
-            Transcript.init_table()
 
-    def include_routes(self):
-        for route in routers:
+    def _include_routes(self):
+        for route in handlers:
             self.app.include_router(route)
+
+    def _init_mongo(self):
+        """Initialize MongoDB and other connections."""
+        google_mongo = GoogleDb()
+        google_mongo.initialize_db()
+        self.db = google_mongo.db
 
     def run_server(self):
         uvicorn.run(self.app, host="0.0.0.0", port=self.port)
