@@ -10,6 +10,7 @@ class GoogleDb():
             host='localhost',
             port=27017,
             authentication_source='admin',
-            alias='default'  # VERY IMPORTANT
+            name='gm_meet',
+            alias='default'
         )
 

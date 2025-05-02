@@ -4,7 +4,7 @@ from src.schemas.meet_document import MeetDocumentCreate
 
 router = APIRouter()
 
-@router.post("/space", response_model=dict, tags=["Document"])
+@router.post("/document", response_model=dict, tags=["Document"])
 def create_space(doc: MeetDocumentCreate):
     if MeetDocument.objects(meet_key=doc.meet_key).first():
         raise HTTPException(status_code=400, detail="MeetDocument with this meet_key already exists")
@@ -12,7 +12,7 @@ def create_space(doc: MeetDocumentCreate):
     meet_doc.save()
     return {"created": True}
 
-@router.delete("/space/{meet_key}", response_model=dict, tags=["Document"])
+@router.delete("/document/{meet_key}", response_model=dict, tags=["Document"])
 def delete_space(meet_key: str):
     space = MeetDocument.objects(meet_key=meet_key).first()
     if not space:

@@ -19,4 +19,4 @@ def update_space_name(meet_key: str, update: MeetDocumentSpaceNameUpdate):
         raise HTTPException(status_code=404, detail="MeetDocument not found")
     space.space_name = update.space_name
     space.save()
-    return
+    return "Success"
