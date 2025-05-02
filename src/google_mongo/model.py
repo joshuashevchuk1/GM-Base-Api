@@ -1,9 +1,9 @@
-# models.py
-
 from mongoengine import Document, StringField, FileField
 
-class MeetSpace(Document):
-    space_name = StringField(required=True, unique=True)
+class MeetDocument(Document):
+    meet_key = StringField(required=True, unique=True)
+
+    space_name = StringField(required=True)
     topic_name = StringField(required=True)
     space_uri = StringField(required=True)
 
@@ -12,5 +12,5 @@ class MeetSpace(Document):
 
     meta = {
         'collection': 'meet_spaces',
-        'indexes': ['space_name']
+        'indexes': ['meet_link']
     }

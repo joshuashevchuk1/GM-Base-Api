@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 import uvicorn
 from handlers import handlers
-from src.model.db import GoogleDb
+from src.google_mongo.db import GoogleDb
 
 
 class GMApp:
