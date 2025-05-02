@@ -45,3 +45,19 @@ async def get_file(meet_key: str):
         return document.transcript.read()  # Return the file content
     else:
         raise HTTPException(status_code=404, detail="File not found")
+
+# Delete the uploaded transcript
+@router.delete("/document/{meet_key}/transcript", response_model=str, tags=["Transcript"])
+async def delete_transcript(meet_key: str):
+    document = MeetDocument.objects(meet_key=meet_key).first()
+    if not document:
+        raise HTTPException(status_code=404, detail="MeetDocument not found")
+
+    if not document.transcript:
+        raise HTTPException(status_code=404, detail="Transcript file not found")
+
+    document.transcript.delete()
+    document.transcript = None
+    document.save()
+
+    return "Transcript deleted successfully"
