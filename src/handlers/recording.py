@@ -35,7 +35,7 @@ async def update_recording(meet_key: str, file: UploadFile = File(...)):
 
 
 # Retrieve the uploaded recording
-@router.get("/document/{meet_key}/recording", tags=["recording"])
+@router.get("/document/{meet_key}/recording", tags=["Recording"])
 async def get_file(meet_key: str):
     document = MeetDocument.objects(meet_key=meet_key).first()
     if not document:
@@ -47,7 +47,7 @@ async def get_file(meet_key: str):
         raise HTTPException(status_code=404, detail="recording file not found")
 
 # Delete the uploaded recording
-@router.delete("/document/{meet_key}/recording", response_model=str, tags=["recording"])
+@router.delete("/document/{meet_key}/recording", response_model=str, tags=["Recording"])
 async def delete_recording(meet_key: str):
     document = MeetDocument.objects(meet_key=meet_key).first()
     if not document:
