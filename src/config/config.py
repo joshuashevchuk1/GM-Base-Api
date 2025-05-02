@@ -22,8 +22,6 @@ class Config:
             self.config = self.load_config()
             self.logging = None
             self.setup_logging()
-            # Initialize boto3 clients only once
-            self.initialized = True  # Set a flag to prevent re-initialization
 
     def _init(self, env, path):
         """
@@ -66,10 +64,10 @@ class Config:
         return self.get('mongo.name')
 
     def get_mongo_user(self):
-        return self.get('database.user')
+        return self.get('mongo.user')
 
     def get_mongo_pass(self):
-        return self.get('database.pass')
+        return self.get('mongo.pass')
 
     def get_download_path(self):
         return self.get("download_path")
