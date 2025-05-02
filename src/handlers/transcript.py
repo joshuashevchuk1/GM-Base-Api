@@ -4,7 +4,6 @@ from io import BytesIO
 
 router = APIRouter()
 
-
 # Upload a transcript
 @router.put("/document/{meet_key}/transcript", response_model=str, tags=["Transcript"])
 async def upload_transcript(meet_key: str, file: UploadFile = File(...)):
