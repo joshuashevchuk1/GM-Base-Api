@@ -11,7 +11,8 @@ class MeetDocument(Document):
     transcript = FileField() # the transcript file post google meet
     recording = FileField() # the audio recording file post google meet
 
-    conversation_history = StringField(required=False)
+    # all history dealt with ai chat for the post meeting session
+    convo_history = StringField(required=False)
 
     meta = {
         'collection': 'meet_spaces',
