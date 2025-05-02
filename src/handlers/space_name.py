@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from src.database import MeetDocument  # updated name
-from src.schemas.space_name import MeetSpaceSpaceNameUpdate
+from src.schemas.space_name import MeetDocumentSpaceNameUpdate
 
 router = APIRouter()
 
@@ -15,7 +15,7 @@ def get_space_name(meet_key: str):
 
 # UPDATE
 @router.put("/document/{meet_key}/space_name", response_model=str, tags=["Space"])
-def update_space_name(meet_key: str, update: MeetSpaceSpaceNameUpdate):
+def update_space_name(meet_key: str, update: MeetDocumentSpaceNameUpdate):
     space = MeetDocument.objects(meet_key=meet_key).first()
     if not space:
         raise HTTPException(status_code=404, detail="MeetDocument not found")
