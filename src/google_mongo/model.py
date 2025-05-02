@@ -12,5 +12,5 @@ class MeetDocument(Document):
 
     meta = {
         'collection': 'meet_spaces',
-        'indexes': ['meet_link']
+        'indexes': ['meet_key']
     }

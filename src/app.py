@@ -16,7 +16,7 @@ class GMApp:
         )
         self.db = None
         self._include_routes()
-        self._init_mongo()
+        #self._init_mongo()
 
 
     def _include_routes(self):
