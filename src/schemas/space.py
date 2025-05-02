@@ -4,12 +4,6 @@ from pydantic import BaseModel, Field
 class MeetSpaceSpaceNameUpdate(BaseModel):
     space_name: str = Field(..., min_length=1)
 
-class MeetSpaceResponse(BaseModel):
-    meet_key: str
-    space_name: str
-    topic_name: str
-    space_uri: str
-
 # READ
 def get_space_name(meet_key: str) -> str:
     space = MeetDocument.objects.get(meet_key=meet_key)
