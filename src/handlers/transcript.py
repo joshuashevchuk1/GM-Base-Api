@@ -1,0 +1,33 @@
+from fastapi import APIRouter, HTTPException, UploadFile, File
+from src.database import MeetDocument  # Assuming updated name
+from io import BytesIO
+
+router = APIRouter()
+
+
+# Upload a file
+@router.put("/document/{meet_key}/transcript", response_model=str, tags=["Transcript"])
+async def upload_transcript(meet_key: str, file: UploadFile = File(...)):
+    document = MeetDocument.objects(meet_key=meet_key).first()
+    if not document:
+        raise HTTPException(status_code=404, detail="MeetDocument not found")
+
+    file_data = await file.read()
+
+    document.transcript.put(BytesIO(file_data), filename=file.filename)
+    document.save()
+
+    return "File uploaded successfully"
+
+
+# Retrieve the uploaded file
+@router.get("/document/{meet_key}/transcript", tags=["Transcript"])
+async def get_file(meet_key: str):
+    document = MeetDocument.objects(meet_key=meet_key).first()
+    if not document:
+        raise HTTPException(status_code=404, detail="MeetDocument not found")
+
+    if document.transcript:
+        return document.transcript.read()  # Return the file content
+    else:
+        raise HTTPException(status_code=404, detail="File not found")
