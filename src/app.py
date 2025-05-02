@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 import uvicorn
-from routes import routers
+from handlers import routers
 from src.models.transcript import Transcript
 
 class GMApp:
