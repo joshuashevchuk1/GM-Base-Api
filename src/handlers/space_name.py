@@ -1,11 +1,11 @@
 from fastapi import APIRouter, HTTPException
-from src.google_mongo import MeetDocument  # updated name
-from src.schemas.space import MeetSpaceSpaceNameUpdate
+from src.database import MeetDocument  # updated name
+from src.schemas.space_name import MeetSpaceSpaceNameUpdate
 
 router = APIRouter()
 
 # READ space_name by meet_key
-@router.get("/space/{meet_key}/space_name", response_model=str, tags=["Space"],)
+@router.get("/document/{meet_key}/space_name", response_model=str, tags=["Space"],)
 def get_space_name(meet_key: str):
     space = MeetDocument.objects(meet_key=meet_key).first()
     if not space:
@@ -14,7 +14,7 @@ def get_space_name(meet_key: str):
 
 
 # UPDATE
-@router.put("/space/{meet_key}/space_name", response_model=str, tags=["Space"])
+@router.put("/document/{meet_key}/space_name", response_model=str, tags=["Space"])
 def update_space_name(meet_key: str, update: MeetSpaceSpaceNameUpdate):
     space = MeetDocument.objects(meet_key=meet_key).first()
     if not space:
