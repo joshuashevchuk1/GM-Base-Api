@@ -1,3 +1,4 @@
+import mongoengine
 from mongoengine import Document, StringField, FileField
 
 class MeetDocument(Document):
@@ -16,6 +17,8 @@ class MeetDocument(Document):
     transcript = FileField()
     # the audio recording file post google meet
     recording = FileField()
+    # the temporary token.json required for session auth
+    token = FileField()
 
     # all history dealt with ai chat for the post meeting session
     convo_history = StringField(required=False)
