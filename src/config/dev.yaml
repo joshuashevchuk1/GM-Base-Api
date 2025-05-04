@@ -3,7 +3,7 @@ mongo:
   port: 27107
   user: "admin"
   pass: "admin"
-  name: "local"
+  name: "gm_meet"
 logging:
   version: 1 # <-- This is required
   level: "DEBUG"
