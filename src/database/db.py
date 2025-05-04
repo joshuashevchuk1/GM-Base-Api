@@ -8,9 +8,7 @@ class GoogleDb():
         self.config = config.Config()
 
     def initialize_db(self):
-        #host = self.config.get_mongo_host()
-        host = "localhost"
-        print(host)
+        host = self.config.get_mongo_host()
         connect(
             host=host,
             port=27017,
