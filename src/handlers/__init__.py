@@ -10,7 +10,6 @@ from .recording import router as recording
 from .space_uri import router as space_uri
 from .topic_name import router as topic_name
 from .convo_history import router as convo_history
-from .token import router as token
 
 handlers = [
     home,
@@ -22,5 +21,4 @@ handlers = [
     transcript,
     recording,
     convo_history,
-    token
 ]
