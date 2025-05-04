@@ -15,9 +15,9 @@ from .token import router as token
 handlers = [
     home,
     health,
+    meet_document,
     space,
     space_uri,
-    meet_document,
     topic_name,
     transcript,
     recording,
