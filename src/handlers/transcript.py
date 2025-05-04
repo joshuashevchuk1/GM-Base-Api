@@ -7,7 +7,7 @@ router = APIRouter()
 
 # Upload a transcript
 @router.post("/document/{meet_key}/transcript", response_model=str, tags=["Transcript"])
-async def update_transcript(meet_key: str, file: UploadFile = File(...)):
+async def post_transcript(meet_key: str, file: UploadFile = File(...)):
     document = MeetDocument.objects(meet_key=meet_key).first()
     if not document:
         raise HTTPException(status_code=404, detail="MeetDocument not found")
@@ -21,7 +21,7 @@ async def update_transcript(meet_key: str, file: UploadFile = File(...)):
 
 # Update a transcript
 @router.put("/document/{meet_key}/transcript", response_model=str, tags=["Transcript"])
-async def update_transcript(meet_key: str, file: UploadFile = File(...)):
+async def put_transcript(meet_key: str, file: UploadFile = File(...)):
     document = MeetDocument.objects(meet_key=meet_key).first()
     if not document:
         raise HTTPException(status_code=404, detail="MeetDocument not found")
