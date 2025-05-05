@@ -12,7 +12,7 @@ class GoogleDb():
             host=self.config.get_mongo_host(),
             port=self.config.get_mongo_port(),
             authentication_source='admin',
-            name=self.config.get_mongo_name(),
+            name='gm_meet',
             alias='default'
         )
 

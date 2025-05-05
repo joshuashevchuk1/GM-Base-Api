@@ -1,6 +1,6 @@
 mongo:
   host: "localhost"
-  port: 27107
+  port: 27017
   user: "admin"
   pass: "admin"
   name: "gm_meet"
