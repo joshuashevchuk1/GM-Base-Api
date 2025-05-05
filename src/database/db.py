@@ -8,12 +8,11 @@ class GoogleDb():
         self.config = config.Config()
 
     def initialize_db(self):
-        host = self.config.get_mongo_host()
         connect(
-            host=host,
-            port=27017,
+            host=self.config.get_mongo_host(),
+            port=self.config.get_mongo_port(),
             authentication_source='admin',
-            name='gm_meet',
+            name=self.config.get_mongo_name(),
             alias='default'
         )
 
