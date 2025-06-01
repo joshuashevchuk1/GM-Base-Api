@@ -35,5 +35,5 @@ class GMApp:
 
 
 if __name__ == "__main__":
-    app = GMApp(port=8000)
+    app = GMApp(port=8080)
     app.run_server()
